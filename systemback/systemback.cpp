@@ -117,6 +117,8 @@ systemback::systemback() : QMainWindow(nullptr, Qt::FramelessWindowHint), ui(new
     {
         QFont fnt;
         if(! sb::like(fnt.family(), {"_Ubuntu_", "_FreeSans_"})) fnt.setFamily(QFontDatabase().families().contains("Ubuntu") ? "Ubuntu" : "FreeSans");
+        // Overriding Default Font
+        fnt.setFamily("Noto Sans CJK KR");
         if(fnt.weight() != QFont::Normal) fnt.setWeight(QFont::Normal);
         if(fnt.bold()) fnt.setBold(false);
         if(fnt.italic()) fnt.setItalic(false);
@@ -128,7 +130,7 @@ systemback::systemback() : QMainWindow(nullptr, Qt::FramelessWindowHint), ui(new
         {
             sfctr = sb::wsclng == "auto" ? fontInfo().pixelSize() > 28 ? Max : fontInfo().pixelSize() > 21 ? High : Normal : sb::wsclng == "2" ? Max : sb::wsclng == "1.5" ? High : Normal;
             while(sfctr > Normal && (sgm.width() - ss(30) < ss(698) || sgm.height() - ss(30) < ss(465))) sfctr = sfctr == Max ? High : Normal;
-            fnt.setPixelSize(ss(15));
+            fnt.setPixelSize(ss(13));
             for(QWdt wdgt : QWL{ui->storagedir, ui->liveworkdir, ui->interrupt, ui->partitiondelete}) wdgt->setFont(fnt);
             qApp->setFont(fnt),
             fnt.setPixelSize(ss(27)),
@@ -7567,13 +7569,14 @@ void systemback::on_languageoverride_clicked(bool chckd)
         QStr lname(ui->languages->currentText());
 
         sb::lang = lname == "المصرية العربية" ? "ar_EG"
-                 : lname == "Català" ? "ca_ES"
+                 : lname == "Català" ? "ca_ES"                 
                  : lname == "Čeština" ? "cs_CS"
                  : lname == "Dansk" ? "da_DK"
                  : lname == "Deutsch" ? "de_DE"
                  : lname == "English (common)" ? "en_EN"
                  : lname == "English (United Kingdom)" ? "en_GB"
                  : lname == "Español" ? "es_ES"
+                 : lname == "Korean" ? "ko_KR"                 
                  : lname == "Suomi" ? "fi_FI"
                  : lname == "Français" ? "fr_FR"
                  : lname == "Galego" ? "gl_ES"
@@ -7604,6 +7607,7 @@ void systemback::on_languages_currentIndexChanged(cQStr &arg1)
                                             : arg1 == "English (common)" ? "en_EN"
                                             : arg1 == "English (United Kingdom)" ? "en_GB"
                                             : arg1 == "Español" ? "es_ES"
+                                            : arg1 == "Korean" ? "ko_KR"
                                             : arg1 == "Suomi" ? "fi_FI"
                                             : arg1 == "Français" ? "fr_FR"
                                             : arg1 == "Galego" ? "gl_ES"

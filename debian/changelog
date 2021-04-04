@@ -1,3 +1,11 @@
+systemback (1.9.4-hamonikr1) jin; urgency=low
+
+  * Apply new upstream release
+  * Update Program name in desktop file
+  * Add Korean Language
+
+ -- HamoniKR <pkg@hamonikr.org>  Sun, 04 Apr 2021 19:02:14 +0900
+
 systemback (1.9.4) release; urgency=low
 
   * 1.9.4
